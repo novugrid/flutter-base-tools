@@ -8,4 +8,7 @@ class Calculator {
   plus() {
     // A new Plus is here
   }
+  minus() {
+    // this will perform a sub calc 
+  }
 }
