@@ -11,4 +11,7 @@ class Calculator {
   minus() {
     // this will perform a sub calc 
   }
+
+  ///multiply two values
+  multiply(int firstValue, int secondValue) => firstValue * secondValue;
 }
