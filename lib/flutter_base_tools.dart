@@ -14,4 +14,7 @@ class Calculator {
 
   ///multiply two values
   multiply(int firstValue, int secondValue) => firstValue * secondValue;
+
+  ///divide two values
+  division(int firstValue, int secondValue) => firstValue / secondValue;
 }
