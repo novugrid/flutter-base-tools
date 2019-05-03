@@ -1,8 +1,12 @@
 library flutter_base_tools;
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:event_bus/event_bus.dart';
 
 part 'src/Database/SessionManager.dart';
+part 'src/observables/Event.dart';
+
+EventBus eventBus = EventBus();
 
 /// A Calculator.
 class Calculator {

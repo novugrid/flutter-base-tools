@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   shared_preferences: ^0.5.2
+  event_bus: ^1.1.0
 
 dev_dependencies:
   flutter_test:
