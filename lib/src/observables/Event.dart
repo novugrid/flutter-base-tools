@@ -39,3 +39,11 @@ class RegisterErrorEvent
 
   RegisterErrorEvent(this.message);
 }
+
+class ImageSourceSelectedEvent
+{
+  ImageSource source;
+
+  ImageSourceSelectedEvent(this.source);
+
+}
