@@ -114,4 +114,18 @@ class ImageProcessor {
     );
   }
 
+  Future<StorageTaskSnapshot> uploadFileToServer(File file, String purpose, String fileName) async
+  {
+    try {
+      StorageUploadTask uploadTask;
+      final FirebaseStorage storage = FirebaseStorage();
+      StorageReference ref = storage.ref().child(purpose).child(fileName);
+      uploadTask = ref.putFile(file);
+      StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
+      return taskSnapshot;
+    }catch(error){
+      eventBus.fire(ErrorEvent(error.toString()));
+    }
+  }
+
 }

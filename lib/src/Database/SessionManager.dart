@@ -30,6 +30,8 @@ class SessionManager
   static const String KEY_PHOTO_URL = 'photo_url';
   static const String KEY_LOCAL_GOVERNMENT = 'local_govern';
   static const String KEY_LOCATION_PERMISSION_SET = 'location_set';
+  static const String KEY_CRASHABLE_MODEL = 'crashable';
+  static const String KEY_CRASHED = 'crashed';
 
   static set fcmToken(String fcmtoken) => sharedPreferences.setString(KEY_FCM, fcmtoken);
   static String get fcmToken => sharedPreferences.getString(KEY_FCM) ?? '';
@@ -83,8 +85,14 @@ class SessionManager
   static String get photoUrl => sharedPreferences.getString(KEY_PHOTO_URL) ?? "";
   static set photoUrl(String url) => sharedPreferences.setString(KEY_PHOTO_URL, url);
 
+  static String get crashableModel => sharedPreferences.getString(KEY_CRASHABLE_MODEL) ?? "";
+  static set crashableModel(String model) => sharedPreferences.setString(KEY_CRASHABLE_MODEL, model);
+
   static String get localGovernment => sharedPreferences.getString(KEY_LOCAL_GOVERNMENT) ?? "";
   static set localGovernment(String lg) => sharedPreferences.setString(KEY_LOCAL_GOVERNMENT, lg);
+
+  static set crashed(bool crashed) => sharedPreferences.setBool(KEY_CRASHED, crashed);
+  static bool get crashed => sharedPreferences.getBool(KEY_CRASHED) ?? false;
 
   static void logOut() {
     sharedPreferences.clear();

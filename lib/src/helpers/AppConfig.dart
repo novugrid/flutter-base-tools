@@ -10,6 +10,8 @@ class AppConfig
 
   static String users = "users";
   static String category = "category";
+  static String item = "item";
+  static String trade = "trade";
 
   static final GOOGLE_MAP_API_KEY = "AIzaSyBBCWd36UA8WGO976qQW7tJ8kuYkA6ThEY";
 
