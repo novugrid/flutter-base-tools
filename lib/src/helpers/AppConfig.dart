@@ -7,6 +7,7 @@ class AppConfig
   static Color APP_ACCENT_COLOR = Color(0xffF89286);
   static Color APP_PRIMARY_COLOR = Color(0xff3F4547);
   static Color APP_BOX_COLOR = Color(0xffecf0f1);
+  static Color APP_SUB_TITLE_COLOR = Color(0xff9caab9);
 
   static String users = "users";
   static String category = "category";

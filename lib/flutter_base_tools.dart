@@ -17,6 +17,7 @@ part 'src/helpers/Utility.dart';
 part 'src/helpers/ImageProcessor.dart';
 part 'src/model/UploadableImage.dart';
 part 'src/model/CrashableModel.dart';
+part 'src/animations/PageSlideTransition.dart';
 
 EventBus eventBus = EventBus();
 
