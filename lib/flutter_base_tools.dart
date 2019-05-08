@@ -18,6 +18,10 @@ part 'src/helpers/ImageProcessor.dart';
 part 'src/model/UploadableImage.dart';
 part 'src/model/CrashableModel.dart';
 part 'src/animations/PageSlideTransition.dart';
+part 'src/model/base_model.dart';
+part 'src/model/UserCategories.dart';
+part 'src/model/BlocModel.dart';
+part 'src/model/GooglePlacesModel.dart';
 
 EventBus eventBus = EventBus();
 

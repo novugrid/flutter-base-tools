@@ -34,6 +34,22 @@ class Utility {
     }
     return mobile;
   }
+  ///For getting the widgetrelative position on a widget tree
+  ///returns [RelativeRect] the position of the widget
+  ///
+  static RelativeRect getWidgetPositionOnScreen(BuildContext context, GlobalKey widgetKey)
+  {
+    final RenderBox popUpRenderBox = widgetKey.currentContext.findRenderObject();
+    final RenderBox overlay = Overlay.of(context).context.findRenderObject();
+    final RelativeRect position = RelativeRect.fromRect(
+      Rect.fromPoints(
+        popUpRenderBox.localToGlobal(popUpRenderBox.size.bottomRight(Offset.zero), ancestor: overlay),
+        popUpRenderBox.localToGlobal(popUpRenderBox.size.bottomRight(Offset.zero), ancestor: overlay),
+      ),
+      Offset.zero & overlay.size,
+    );
+    return position;
+  }
 
 
 }

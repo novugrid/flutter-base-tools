@@ -32,6 +32,7 @@ class SessionManager
   static const String KEY_LOCATION_PERMISSION_SET = 'location_set';
   static const String KEY_CRASHABLE_MODEL = 'crashable';
   static const String KEY_CRASHED = 'crashed';
+  static const String KEY_USER_CATEGORY_ID = 'user_category_id';
 
   static set fcmToken(String fcmtoken) => sharedPreferences.setString(KEY_FCM, fcmtoken);
   static String get fcmToken => sharedPreferences.getString(KEY_FCM) ?? '';
@@ -90,6 +91,9 @@ class SessionManager
 
   static String get localGovernment => sharedPreferences.getString(KEY_LOCAL_GOVERNMENT) ?? "";
   static set localGovernment(String lg) => sharedPreferences.setString(KEY_LOCAL_GOVERNMENT, lg);
+
+  static String get userCategoryId => sharedPreferences.getString(KEY_USER_CATEGORY_ID) ?? "";
+  static set userCategoryId(String catId) => sharedPreferences.setString(KEY_USER_CATEGORY_ID, catId);
 
   static set crashed(bool crashed) => sharedPreferences.setBool(KEY_CRASHED, crashed);
   static bool get crashed => sharedPreferences.getBool(KEY_CRASHED) ?? false;
