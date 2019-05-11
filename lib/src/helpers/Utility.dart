@@ -51,6 +51,19 @@ class Utility {
     return position;
   }
 
+  static String getDuration(Duration d) {
+    if (d.inSeconds <= 60) {
+      return '${d.inSeconds.toString()} second${d.inSeconds != 1 ? 's' : ''} ago';
+    } else if (d.inMinutes <= 60) {
+      return '${d.inMinutes.toString()} minute${d.inMinutes != 1 ? 's' : ''} ago';
+    } else if (d.inHours <= 24) {
+      return '${d.inHours.toString()} hour${d.inHours != 1 ? 's' : ''} ago';
+    } else if (d.inDays <= 7) {
+      return '${d.inDays.toString()} day${d.inDays != 1 ? 's' : ''} ago';
+    }
+    return 'N/A';
+  }
+
 
 }
 
