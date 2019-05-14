@@ -191,4 +191,13 @@ class NovuWidgets
     );
   }
 
+  static Widget pageLoading(BuildContext context)
+  {
+    return Container(
+      color: Colors.black45,
+      height: MediaQuery.of(context).size.height,
+      child: Center(child: CircularProgressIndicator()),
+    );
+  }
+
 }

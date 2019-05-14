@@ -8,13 +8,15 @@ class AppConfig
   static Color APP_PRIMARY_COLOR = Color(0xff3F4547);
   static Color APP_BOX_COLOR = Color(0xffecf0f1);
   static Color APP_SUB_TITLE_COLOR = Color(0xff9caab9);
+  static Color APP_BUTTON_COLOR = Color(0xff62C78D);
 
   static String users = "users";
   static String category = "category";
   static String item = "item";
-  static String trade = "trade";
   static String userCategories = "userCategories";
-  static String favourite = "favourite";
+  static String favourite = "favourites";
+  static String trades = "trades";
+  static String collectors = "collectors";
 
   static final GOOGLE_MAP_API_KEY = "AIzaSyBBCWd36UA8WGO976qQW7tJ8kuYkA6ThEY";
 
