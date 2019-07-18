@@ -1,4 +1,4 @@
-part of flutter_base_tools;
+
 
 ///
 /// project: flutter_base_tools

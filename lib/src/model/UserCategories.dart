@@ -1,4 +1,6 @@
-part of flutter_base_tools;
+
+import 'package:flutter_base_tools/src/model/base_model.dart';
+
 ///
 /// project: flutter_base_tools
 /// @package: src.helpers

@@ -1,8 +1,11 @@
-part of flutter_base_tools;
+import 'package:flutter/material.dart';
 
-class AppConfig
-{
-
+///
+/// project: flutter_base_tools
+/// @package: src.helpers
+/// @author dammyololade <damola@kobo360.com>
+/// created on 2019-07-18
+class Config {
   static Color APP_BACKGROUND_COLOR = Color(0xffFDFBF6);
   static Color APP_ACCENT_COLOR = Color(0xfff89286);
   static Color APP_PRIMARY_COLOR = Color(0xff3F4547);
@@ -18,7 +21,11 @@ class AppConfig
   static String trades = "trades";
   static String collectors = "collectors";
 
-  static final GOOGLE_MAP_API_KEY = "AIzaSyBBCWd36UA8WGO976qQW7tJ8kuYkA6ThEY";
+  static const String STATUS_ACCEPTED = "Accepted";
+  static const String STATUS_PENDING = "Pending";
+  static const String STATUS_REJECTED = "Rejected";
+
+  static final GOOGLE_MAP_API_KEY = "please add your key";
 
   static GOOGLE_PLACES_AUTO_COMPLETE_API(String searchTerm)
   => "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=$GOOGLE_MAP_API_KEY&input=${searchTerm}";

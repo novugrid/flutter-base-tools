@@ -1,4 +1,5 @@
-part of flutter_base_tools;
+import 'package:flutter/material.dart';
+import 'package:flutter_base_tools/src/helpers/Config.dart';
 
 typedef TextValidator = Function(String value);
 
@@ -8,7 +9,7 @@ class NovuWidgets
   static titleStyle()
   {
     return TextStyle(
-      color: AppConfig.APP_PRIMARY_COLOR,
+      color: Config.APP_PRIMARY_COLOR,
       fontSize: 25,
       fontWeight: FontWeight.w600
     );
@@ -18,7 +19,7 @@ class NovuWidgets
       TextInputType inputType, String errorMessage, {bool isObscureText = false, Color borderColor, TextValidator textValidator,
         bool isLastTextField = false, FocusNode focusNode, FocusNode nextFocusNode,
         BuildContext context, TextStyle labelTextStyle, String prefixText = "", bool hasBorder = true,
-        TextStyle hintStyle
+        TextStyle hintStyle, TextStyle inputStyle = const TextStyle(color: Colors.black), EdgeInsets contentPadding = const EdgeInsets.all(5)
       })
   {
     return Center(
@@ -50,7 +51,7 @@ class NovuWidgets
                       width: 1
                   )
               ),
-              contentPadding: EdgeInsets.all(5),
+              contentPadding: contentPadding,
               prefixText: prefixText,
             ),
             controller: _controller,
@@ -71,23 +72,34 @@ class NovuWidgets
                     : FocusScope.of(context).requestFocus(nextFocusNode);
               }
             },
-            style: TextStyle(
-              color: Colors.black,
-            ),
+            style: inputStyle,
           ),
         ],
       ),
     );
   }
 
-  static negativeButton(String title, VoidCallback callback, {TextStyle textStyle})
-  {
-    return FlatButton(
-      onPressed: callback,
-      child: Text("$title",
-        style: textStyle ?? TextStyle(fontSize: 15),
+  static Widget negativeButton( String title, VoidCallback callback,
+      {bool shouldPop = false, Color textColor, TextStyle textStyle}) {
+    return Container(
+      //width: 150,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          FlatButton(
+            onPressed: () {
+              callback != null
+                  ? callback()
+                  : print('Negative Callback Not Present');
+            },
+            child: Text(title, style: TextStyle(fontSize: 14.0)),
+            textColor: textColor ?? Config.APP_PRIMARY_COLOR,
+            padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(6.0)),
+          ),
+        ],
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
     );
   }
 
@@ -155,39 +167,47 @@ class NovuWidgets
     );
   }
 
-  static positiveButton(String title, VoidCallback callback)
-  {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: RaisedButton(
-        onPressed: callback,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Text("$title",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-                textAlign: TextAlign.center,
+  static Widget positiveButton(String title, VoidCallback callback,
+      {Color bgColor,
+        Color textColor,
+        int width = 180,
+        double elevation = 3.0}) {
+    return RaisedButton(
+      onPressed: () {
+        callback != null ? callback() : print('Positive Callback Not Present');
+      },
+      color: bgColor ?? Config.APP_ACCENT_COLOR,
+      textColor: Colors.white,
+      padding: new EdgeInsets.symmetric(vertical: 12),
+      elevation: elevation,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+            child: new Text(
+              title,
+              style: TextStyle(
+                color: textColor ?? Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
               ),
-            )
-          ],
-        ),
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-        color: Color(0xff62C78D),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
       ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
     );
   }
 
-  static appBar(String title, {List<Widget> actions})
+  static appBar(String title, {List<Widget> actions, double elevation = 3})
   {
     return AppBar(
       backgroundColor: Colors.white,
-      title: Text("$title", style: TextStyle(color: AppConfig.APP_PRIMARY_COLOR),),
+      title: Text("$title", style: TextStyle(color: Config.APP_PRIMARY_COLOR),),
       toolbarOpacity: 0.5,
-      iconTheme: IconThemeData(color: AppConfig.APP_PRIMARY_COLOR),
+      iconTheme: IconThemeData(color: Config.APP_PRIMARY_COLOR),
       actions: actions,
+      elevation: elevation,
     );
   }
 
@@ -199,5 +219,43 @@ class NovuWidgets
       child: Center(child: CircularProgressIndicator()),
     );
   }
+
+  static Widget signUpTextField(String hint, TextEditingController _controller,
+      {bool isObscureText = false,
+        FocusNode focusNode,
+        FocusNode nextFocusNode,
+        BuildContext context,
+        TextInputType inputType = TextInputType.text,
+        bool isLastTextField = false}) {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: hint,
+        hintStyle: TextStyle(
+          fontFamily: "ARoman",
+          fontSize: 16,
+        ),
+        border: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        contentPadding: EdgeInsets.symmetric(vertical: 11, horizontal: 16),
+      ),
+      controller: _controller,
+      maxLines: 1,
+      enabled: true,
+      keyboardType: inputType,
+      obscureText: isObscureText ?? false,
+      focusNode: focusNode,
+      textInputAction:
+      isLastTextField ? TextInputAction.done : TextInputAction.next,
+      onFieldSubmitted: (term) {
+        if (focusNode != null && context != null) {
+          isLastTextField
+              ? FocusScope.of(context).consumeKeyboardToken()
+              : FocusScope.of(context).requestFocus(nextFocusNode);
+        }
+      },
+      style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "ARoman"),
+    );
+  }
+
 
 }

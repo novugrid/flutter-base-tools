@@ -1,4 +1,4 @@
-part of flutter_base_tools;
+
 
 // Created By: Lekan Olad
 // Machine : appy

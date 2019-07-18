@@ -12,9 +12,8 @@ dependencies:
     sdk: flutter
   shared_preferences: ^0.5.2
   event_bus: ^1.1.0
-  firebase_messaging: ^4.0.0+4
   image_picker: ^0.6.0+2
-  firebase_storage: ^2.1.1+2
+  firebase_storage: ^3.0.0
 
 dev_dependencies:
   flutter_test:

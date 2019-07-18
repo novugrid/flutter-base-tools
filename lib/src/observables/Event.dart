@@ -1,6 +1,8 @@
-part of flutter_base_tools;
 
-/// created by dammyololade 
+
+import 'package:image_picker/image_picker.dart';
+
+/// created by dammyololade
 /// created on 2019-05-02
 /// project 
 

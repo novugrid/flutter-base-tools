@@ -5,23 +5,24 @@ import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-part 'src/Database/SessionManager.dart';
-part 'src/observables/Event.dart';
-part 'src/custom/NovuWidget.dart';
-part 'src/helpers/AppConfig.dart';
-part 'src/helpers/Utility.dart';
-part 'src/helpers/ImageProcessor.dart';
-part 'src/model/UploadableImage.dart';
-part 'src/model/CrashableModel.dart';
-part 'src/animations/PageSlideTransition.dart';
-part 'src/model/base_model.dart';
-part 'src/model/UserCategories.dart';
-part 'src/model/BlocModel.dart';
-part 'src/model/GooglePlacesModel.dart';
+export 'src/custom/BaseStatefulWidget.dart';
+
+export 'src/Database/SessionManager.dart';
+export 'src/observables/Event.dart';
+export 'src/custom/NovuWidget.dart';
+export 'src/helpers/Config.dart';
+export 'src/helpers/Utility.dart';
+export 'src/helpers/ImageProcessor.dart';
+export 'src/model/UploadableImage.dart';
+export 'src/model/CrashableModel.dart';
+export 'src/animations/PageSlideTransition.dart';
+export 'src/model/base_model.dart';
+export 'src/model/UserCategories.dart';
+export 'src/model/BlocModel.dart';
+export 'src/model/GooglePlacesModel.dart';
 
 EventBus eventBus = EventBus();
 

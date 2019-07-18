@@ -1,4 +1,6 @@
-part of flutter_base_tools;
+
+
+import 'package:flutter/material.dart';
 
 /// created by dammyololade
 /// created on 2019-04-27
@@ -19,8 +21,8 @@ class Utility {
   static Future<String> getFcmToken() async
   {
     String token = "";
-    FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
-    token = await firebaseMessaging.getToken();
+   //FirebaseMessaging firebaseMessaging = new FirebaseMessaging();
+    //token = await firebaseMessaging.getToken();
     return token;
   }
 

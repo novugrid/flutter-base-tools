@@ -1,4 +1,4 @@
-part of flutter_base_tools;
+import 'package:flutter/material.dart';
 
 class PageSlideTransition extends PageRouteBuilder {
   final Widget widget;

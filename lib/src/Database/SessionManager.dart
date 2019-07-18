@@ -1,4 +1,5 @@
-part of flutter_base_tools;
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 /// created by dammyololade
 /// created on 2019-05-02
@@ -33,6 +34,7 @@ class SessionManager
   static const String KEY_CRASHABLE_MODEL = 'crashable';
   static const String KEY_CRASHED = 'crashed';
   static const String KEY_USER_CATEGORY_ID = 'user_category_id';
+  static const String KEY_FAV_ITEM_IDS = 'fav_item_ids';
 
   static set fcmToken(String fcmtoken) => sharedPreferences.setString(KEY_FCM, fcmtoken);
   static String get fcmToken => sharedPreferences.getString(KEY_FCM) ?? '';
@@ -94,6 +96,9 @@ class SessionManager
 
   static String get userCategoryId => sharedPreferences.getString(KEY_USER_CATEGORY_ID) ?? "";
   static set userCategoryId(String catId) => sharedPreferences.setString(KEY_USER_CATEGORY_ID, catId);
+
+  static List<String> get favItemIds => sharedPreferences.getStringList(KEY_FAV_ITEM_IDS) ?? [];
+  static set favItemIds(List<String> ids) => sharedPreferences.setStringList(KEY_FAV_ITEM_IDS, ids);
 
   static set crashed(bool crashed) => sharedPreferences.setBool(KEY_CRASHED, crashed);
   static bool get crashed => sharedPreferences.getBool(KEY_CRASHED) ?? false;

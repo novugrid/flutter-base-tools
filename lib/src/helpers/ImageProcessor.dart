@@ -1,4 +1,13 @@
-part of flutter_base_tools;
+
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_base_tools/flutter_base_tools.dart';
+import 'package:flutter_base_tools/src/helpers/Config.dart';
+import 'package:flutter_base_tools/src/observables/Event.dart';
+import 'package:image_picker/image_picker.dart';
+
 ///
 /// project: flutter_base_tools
 /// @package: src.helpers
@@ -24,7 +33,7 @@ class ImageProcessor {
                       title,
                       style: TextStyle(fontSize: 15.0,
                           fontWeight: FontWeight.bold,
-                          color: AppConfig.APP_PRIMARY_COLOR),
+                          color: Config.APP_PRIMARY_COLOR),
                     ),
                     Expanded(child: Container()),
                     SizedBox(
@@ -41,7 +50,7 @@ class ImageProcessor {
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                             decoration: BoxDecoration(
-                              color: AppConfig.APP_BOX_COLOR,
+                              color: Config.APP_BOX_COLOR,
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             child: new Column(
@@ -52,7 +61,7 @@ class ImageProcessor {
                                       child: new Icon(
                                         Icons.camera_alt,
                                         size: 22.0,
-                                        color: AppConfig.APP_PRIMARY_COLOR,
+                                        color: Config.APP_PRIMARY_COLOR,
                                       )),
                                 ),
                                 SizedBox(
@@ -61,7 +70,7 @@ class ImageProcessor {
                                 Text(
                                   "CAMERA",
                                   style: TextStyle(
-                                      color: AppConfig.APP_PRIMARY_COLOR,
+                                      color: Config.APP_PRIMARY_COLOR,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 10.0),
                                 )
@@ -77,7 +86,7 @@ class ImageProcessor {
                           child: Container(
                             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
                             decoration: BoxDecoration(
-                              color: AppConfig.APP_BOX_COLOR,
+                              color: Config.APP_BOX_COLOR,
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             child: new Column(
@@ -88,7 +97,7 @@ class ImageProcessor {
                                       child: new Icon(
                                         Icons.image,
                                         size: 22.0,
-                                        color: AppConfig.APP_PRIMARY_COLOR,
+                                        color: Config.APP_PRIMARY_COLOR,
                                       )),
                                 ),
                                 SizedBox(
@@ -97,7 +106,7 @@ class ImageProcessor {
                                 Text(
                                   "GALLERY",
                                   style: TextStyle(
-                                      color: AppConfig.APP_PRIMARY_COLOR,
+                                      color: Config.APP_PRIMARY_COLOR,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 10.0),
                                 )

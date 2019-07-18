@@ -1,4 +1,4 @@
-part of flutter_base_tools;
+
 
 /// created by dammyololade
 /// created on 2019-04-30
