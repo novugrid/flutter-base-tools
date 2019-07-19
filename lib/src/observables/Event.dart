@@ -4,14 +4,7 @@ import 'package:image_picker/image_picker.dart';
 
 /// created by dammyololade
 /// created on 2019-05-02
-/// project 
-
-class ErrorEvent
-{
-  String message;
-
-  ErrorEvent(this.message);
-}
+/// project
 
 class SuccessEvent
 {

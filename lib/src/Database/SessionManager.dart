@@ -35,6 +35,7 @@ class SessionManager
   static const String KEY_CRASHED = 'crashed';
   static const String KEY_USER_CATEGORY_ID = 'user_category_id';
   static const String KEY_FAV_ITEM_IDS = 'fav_item_ids';
+  static const String KEY_TOKEN = 'token';
 
   static set fcmToken(String fcmtoken) => sharedPreferences.setString(KEY_FCM, fcmtoken);
   static String get fcmToken => sharedPreferences.getString(KEY_FCM) ?? '';
@@ -99,6 +100,15 @@ class SessionManager
 
   static List<String> get favItemIds => sharedPreferences.getStringList(KEY_FAV_ITEM_IDS) ?? [];
   static set favItemIds(List<String> ids) => sharedPreferences.setStringList(KEY_FAV_ITEM_IDS, ids);
+
+  static String get token => sharedPreferences.getString(KEY_TOKEN) ?? "";
+  static set token(String tk) => sharedPreferences.setString(KEY_TOKEN, tk);
+
+  static String get firstName => sharedPreferences.getString(KEY_FIRSTNAME) ?? '';
+  static set firstName(String firstName) => sharedPreferences.setString(KEY_FIRSTNAME, firstName);
+
+  static String get lastName => sharedPreferences.getString(KEY_LASTNAME) ?? '';
+  static set lastName(String lastName) => sharedPreferences.setString(KEY_LASTNAME, lastName);
 
   static set crashed(bool crashed) => sharedPreferences.setBool(KEY_CRASHED, crashed);
   static bool get crashed => sharedPreferences.getBool(KEY_CRASHED) ?? false;
