@@ -19,6 +19,10 @@ export 'src/model/BlocModel.dart';
 export 'src/model/GooglePlacesModel.dart';
 export 'src/helpers/Event.dart';
 export 'src/helpers/NetworkUtil.dart';
+export 'src/custom/BigDialog.dart';
+export 'src/custom/CustomBottomSheet.dart';
+export 'src/widgets/FCTextextField.dart';
+export 'src/widgets/FCAppBar.dart';
 
 EventBus eventBus = EventBus();
 

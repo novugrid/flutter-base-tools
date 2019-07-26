@@ -7,14 +7,22 @@ import 'package:flutter/material.dart';
 /// project 
 class Utility {
 
-  static bool validateEmail(String value)
+  static Pattern emailPattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+  static bool isValidEmail(String email)
   {
-    Pattern pattern = r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regExp = RegExp(pattern);
-    if(!regExp.hasMatch(value)) {
-      return false;
+    RegExp regExp = RegExp(emailPattern);
+    return regExp.hasMatch(email);
+  }
+
+  static String validateEmail(String value)
+  {
+    RegExp regExp = RegExp(emailPattern);
+    if(!regExp.hasMatch(value.trim())) {
+      return "Enter valid email";
     } else {
-      return true;
+      return null;
     }
   }
 
@@ -53,15 +61,15 @@ class Utility {
     return position;
   }
 
-  static String getDuration(Duration d) {
+  static String getDuration(Duration d, {bool includeAgo = true}) {
     if (d.inSeconds <= 60) {
-      return '${d.inSeconds.toString()} second${d.inSeconds != 1 ? 's' : ''} ago';
+      return '${d.inSeconds.toString()} second${d.inSeconds != 1 ? 's' : ''} ${includeAgo ? "ago" : ""}';
     } else if (d.inMinutes <= 60) {
-      return '${d.inMinutes.toString()} minute${d.inMinutes != 1 ? 's' : ''} ago';
+      return '${d.inMinutes.toString()} minute${d.inMinutes != 1 ? 's' : ''} ${includeAgo ? "ago" : ""}';
     } else if (d.inHours <= 24) {
-      return '${d.inHours.toString()} hour${d.inHours != 1 ? 's' : ''} ago';
+      return '${d.inHours.toString()} hour${d.inHours != 1 ? 's' : ''} ${includeAgo ? "ago" : ""}';
     } else if (d.inDays <= 7) {
-      return '${d.inDays.toString()} day${d.inDays != 1 ? 's' : ''} ago';
+      return '${d.inDays.toString()} day${d.inDays != 1 ? 's' : ''} ${includeAgo ? "ago" : ""}';
     }
     return 'N/A';
   }

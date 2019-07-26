@@ -80,26 +80,23 @@ class NovuWidgets
   }
 
   static Widget negativeButton( String title, VoidCallback callback,
-      {bool shouldPop = false, Color textColor, TextStyle textStyle}) {
-    return Container(
-      //width: 150,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          FlatButton(
-            onPressed: () {
-              callback != null
-                  ? callback()
-                  : print('Negative Callback Not Present');
-            },
-            child: Text(title, style: TextStyle(fontSize: 14.0)),
-            textColor: textColor ?? Config.APP_PRIMARY_COLOR,
-            padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
-            shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(6.0)),
-          ),
-        ],
-      ),
+      {bool shouldPop = false, Color textColor, TextStyle textStyle, Widget trailingWidget}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        FlatButton(
+          onPressed: () {
+            callback != null
+                ? callback()
+                : print('Negative Callback Not Present');
+          },
+          child: Text(title, style: TextStyle(fontSize: 14.0)),
+          textColor: textColor ?? Config.APP_PRIMARY_COLOR,
+          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+          shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(6.0)),
+        ),
+      ],
     );
   }
 
@@ -226,7 +223,8 @@ class NovuWidgets
         FocusNode nextFocusNode,
         BuildContext context,
         TextInputType inputType = TextInputType.text,
-        bool isLastTextField = false}) {
+        TextValidator textValidator,
+        bool isLastTextField = false, String errorMessage}) {
     return TextFormField(
       decoration: InputDecoration(
         hintText: hint,
@@ -254,6 +252,58 @@ class NovuWidgets
         }
       },
       style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "ARoman"),
+      // ignore: missing_return
+      validator: textValidator ?? (value) {
+        if(value.isEmpty) {
+          return errorMessage ?? "Fill the form";
+        }
+      },
+    );
+  }
+
+  static Widget progressAwareButton({@required ValueNotifier<bool> notifier, @required Widget child}) {
+    return ValueListenableBuilder(
+      valueListenable: notifier,
+      builder: (context, value, anotherChild){
+        return value ? Center(child: CircularProgressIndicator(),) : child;
+      }
+    );
+  }
+
+  static Widget divider({
+    Color color = Colors.black26,
+    double height = 0.5
+  }) => Container(
+    height: height,
+    color: color,
+  );
+
+  static Widget neutralButton( String title, VoidCallback callback,
+      {Color textColor, TextStyle textStyle, Widget trailingWidget}) {
+    return FlatButton(
+      onPressed: () {
+        callback != null
+            ? callback()
+            : print('Negative Callback Not Present');
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        child: Row(
+          children: <Widget>[
+            Expanded(child: Text(title, style: textStyle ?? TextStyle(
+                fontSize: 14.0,
+                color: Color(0xff2B3349),
+              fontWeight: FontWeight.bold
+            )
+            )),
+            trailingWidget ?? SizedBox(),
+          ],
+        ),
+      ),
+      textColor: textColor ?? Config.APP_PRIMARY_COLOR,
+      padding: EdgeInsets.symmetric(vertical: 5.0),
+      shape: new RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(1.0)),
     );
   }
 

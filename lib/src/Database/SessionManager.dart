@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// created by dammyololade
 /// created on 2019-05-02
 /// project 
-class SessionManager
+abstract class SessionManager
 {
   static SharedPreferences sharedPreferences;
 

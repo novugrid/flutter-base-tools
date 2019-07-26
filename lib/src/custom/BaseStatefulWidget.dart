@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_base_tools/flutter_base_tools.dart';
 
 
 /// contains handy codethat can be easily used in a statefule widget
@@ -10,6 +13,21 @@ import 'package:flutter/material.dart';
 mixin BaseStatefulWidget {
 
   var scaffoldKey = GlobalKey<ScaffoldState>();
+  String classTag;
+
+  var formKey = GlobalKey<FormState>();
+  StreamSubscription errorSub;
+  bool alwaysDisplayError = true;
+  ValueNotifier<bool> progressNotifier = ValueNotifier(false);
+
+  initErrorEvent() {
+    errorSub = eventBus.on<ErrorEvent>().listen(onErrorEvent);
+  }
+
+  onErrorEvent(ErrorEvent event) {
+    this.progressNotifier.value = false;
+    this.showMessage(event.message);
+  }
 
   showMessage(String message, {bool success = false})
   {
@@ -23,4 +41,5 @@ mixin BaseStatefulWidget {
       print("the scaffoldkey is null, kindly attach the scaffoldkey to the scaffold");
     }
   }
+
 }
