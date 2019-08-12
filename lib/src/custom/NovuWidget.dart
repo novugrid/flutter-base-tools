@@ -90,7 +90,7 @@ class NovuWidgets
                 ? callback()
                 : print('Negative Callback Not Present');
           },
-          child: Text(title, style: TextStyle(fontSize: 14.0)),
+          child: Text(title, style: textStyle ?? TextStyle(fontSize: 14.0)),
           textColor: textColor ?? Config.APP_PRIMARY_COLOR,
           padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
           shape: new RoundedRectangleBorder(
@@ -168,6 +168,8 @@ class NovuWidgets
       {Color bgColor,
         Color textColor,
         int width = 180,
+        double borderRadius = 6,
+        EdgeInsets padding = const EdgeInsets.symmetric(vertical: 12),
         double elevation = 3.0}) {
     return RaisedButton(
       onPressed: () {
@@ -175,7 +177,7 @@ class NovuWidgets
       },
       color: bgColor ?? Config.APP_ACCENT_COLOR,
       textColor: Colors.white,
-      padding: new EdgeInsets.symmetric(vertical: 12),
+      padding: padding,
       elevation: elevation,
       child: Row(
         children: <Widget>[
@@ -192,7 +194,7 @@ class NovuWidgets
           ),
         ],
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
     );
   }
 

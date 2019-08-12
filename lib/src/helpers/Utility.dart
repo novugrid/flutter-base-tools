@@ -1,6 +1,9 @@
 
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+
 
 /// created by dammyololade
 /// created on 2019-04-27
@@ -68,13 +71,21 @@ class Utility {
       return '${d.inMinutes.toString()} minute${d.inMinutes != 1 ? 's' : ''} ${includeAgo ? "ago" : ""}';
     } else if (d.inHours <= 24) {
       return '${d.inHours.toString()} hour${d.inHours != 1 ? 's' : ''} ${includeAgo ? "ago" : ""}';
-    } else if (d.inDays <= 7) {
-      return '${d.inDays.toString()} day${d.inDays != 1 ? 's' : ''} ${includeAgo ? "ago" : ""}';
     }
-    return 'N/A';
+    return '${d.inDays.toString()} day${d.inDays != 1 ? 's' : ''} ${includeAgo ? "ago" : ""}';
   }
 
+  static String getFutureDuration(Duration d) {
+    if(d.inSeconds <= 60) {
+      return "${d.inSeconds} second${d.inSeconds != 1 ? 's' : ''}";
+    }
+  }
 
+  static String readableDate(DateTime date) {
+    return "${date.day < 10 ? "0${date.day}" : "${date.day}"}-"
+        "${date.month < 10 ? "0${date.month}" : "${date.month}"}-"
+        "${date.year}";
+  }
 }
 
 class Mobile{

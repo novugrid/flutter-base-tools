@@ -1,7 +1,5 @@
 
 import 'dart:io';
-
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_base_tools/flutter_base_tools.dart';
 import 'package:flutter_base_tools/src/helpers/Config.dart';
@@ -122,19 +120,4 @@ class ImageProcessor {
             )
     );
   }
-
-  Future<StorageTaskSnapshot> uploadFileToServer(File file, String purpose, String fileName) async
-  {
-    try {
-      StorageUploadTask uploadTask;
-      final FirebaseStorage storage = FirebaseStorage();
-      StorageReference ref = storage.ref().child(purpose).child(fileName);
-      uploadTask = ref.putFile(file);
-      StorageTaskSnapshot taskSnapshot = await uploadTask.onComplete;
-      return taskSnapshot;
-    }catch(error){
-      eventBus.fire(ErrorEvent(error.toString()));
-    }
-  }
-
 }

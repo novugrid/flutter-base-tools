@@ -43,6 +43,7 @@ class NetworkUtil {
           )
       );
     }on DioError catch(e) {
+      response = e.response;
       switch (e.type) {
         case DioErrorType.CANCEL :
         case DioErrorType.CONNECT_TIMEOUT :
@@ -74,6 +75,7 @@ class NetworkUtil {
           }
       );
     }on DioError catch(e) {
+      response = e.response;
       switch (e.type) {
         case DioErrorType.CANCEL :
         case DioErrorType.CONNECT_TIMEOUT :
@@ -105,6 +107,7 @@ class NetworkUtil {
           }
       );
     }on DioError catch(e) {
+      response = e.response;
       switch (e.type) {
         case DioErrorType.CANCEL :
         case DioErrorType.CONNECT_TIMEOUT :
@@ -133,6 +136,7 @@ class NetworkUtil {
           ),
       );
     }on DioError catch(e) {
+      response = e.response;
       switch (e.type) {
         case DioErrorType.CANCEL :
         case DioErrorType.CONNECT_TIMEOUT :
