@@ -15,7 +15,7 @@ class NovuWidgets
     );
   }
 
-  static Widget FormTextField(String label, String hint, TextEditingController _controller,
+  static Widget formTextField(String label, String hint, TextEditingController _controller,
       TextInputType inputType, String errorMessage, {bool isObscureText = false, Color borderColor, TextValidator textValidator,
         bool isLastTextField = false, FocusNode focusNode, FocusNode nextFocusNode,
         BuildContext context, TextStyle labelTextStyle, String prefixText = "", bool hasBorder = true,
@@ -139,7 +139,7 @@ class NovuWidgets
     );
   }
 
-  static Widget SearchField(TextEditingController controller,{bool hasBorder = false, Color borderColor})
+  static Widget searchField(TextEditingController controller,{bool hasBorder = false, Color borderColor})
   {
     return TextFormField(
       decoration: InputDecoration(
