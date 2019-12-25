@@ -80,7 +80,10 @@ class NovuWidgets
   }
 
   static Widget negativeButton( String title, VoidCallback callback,
-      {bool shouldPop = false, Color textColor, TextStyle textStyle, Widget trailingWidget}) {
+      {bool shouldPop = false, Color textColor,
+        TextStyle textStyle, Widget trailingWidget,
+        EdgeInsets padding
+      }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -90,9 +93,18 @@ class NovuWidgets
                 ? callback()
                 : print('Negative Callback Not Present');
           },
-          child: Text(title, style: textStyle ?? TextStyle(fontSize: 14.0)),
+          child: trailingWidget == null ?
+            Text(title, style: textStyle ?? TextStyle(fontSize: 14.0))
+            : Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(title, style: textStyle ?? TextStyle(fontSize: 14.0)),
+                  SizedBox(width: 5,),
+                  trailingWidget
+                ],
+              ),
           textColor: textColor ?? Config.APP_PRIMARY_COLOR,
-          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+          padding: padding ?? EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
           shape: new RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(6.0)),
         ),

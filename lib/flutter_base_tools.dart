@@ -23,6 +23,7 @@ export 'src/custom/BigDialog.dart';
 export 'src/custom/CustomBottomSheet.dart';
 export 'src/widgets/FCTextextField.dart';
 export 'src/widgets/FCAppBar.dart';
+export 'src/model/ImagePickerModel.dart';
 
 EventBus eventBus = EventBus();
 

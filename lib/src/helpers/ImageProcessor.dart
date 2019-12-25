@@ -13,6 +13,17 @@ import 'package:image_picker/image_picker.dart';
 /// created on 2019-05-04
 class ImageProcessor {
 
+  Future<ImagePickerModel> getImage(ImageSource imageSource) async {
+    ImagePickerModel model = ImagePickerModel(success: false);
+    try{
+      model.file = await ImagePicker.pickImage(source: imageSource);
+      if(model.file != null) model.success = true;
+    } catch(error) {
+      model.message = error.toString();
+    }
+    return model;
+  }
+
   showModal(BuildContext context, String title)
   {
     showModalBottomSheet(

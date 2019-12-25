@@ -34,7 +34,7 @@ mixin BaseStatefulWidget {
     if(scaffoldKey.currentState != null) {
       scaffoldKey.currentState.showSnackBar(
           SnackBar(content: Text("$message"),
-            backgroundColor: success ? Colors.green : Colors.red,
+            backgroundColor: success ? Colors.black : Colors.red,
           )
       );
     }else{

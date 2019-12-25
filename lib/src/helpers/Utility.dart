@@ -86,6 +86,27 @@ class Utility {
         "${date.month < 10 ? "0${date.month}" : "${date.month}"}-"
         "${date.year}";
   }
+
+  static String extractFirstLetter(String s) {
+    s = s ?? '';
+    if (s == null || s.isEmpty) {
+      return '';
+    }
+
+    if (s.split(' ').length > 1) {
+      StringBuffer stringBuffer = new StringBuffer();
+      s.split(' ').forEach((s) {
+        if (s == null || s.isEmpty) {
+          stringBuffer.write('');
+        } else {
+          stringBuffer.write(s.substring(0, 1).toUpperCase());
+        }
+      });
+
+      return stringBuffer.toString();
+    }
+    return s.substring(0, 1);
+  }
 }
 
 class Mobile{
