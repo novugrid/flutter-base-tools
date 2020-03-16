@@ -108,6 +108,21 @@ class Utility {
     }
     return s.substring(0, 1);
   }
+
+  static String extractErrorMessageFromResponse(Response response) {
+    String message = "";
+    try {
+      if (response?.data != null && response.data["message"] != null) {
+        message = response.data["message"];
+      } else {
+        message = response.statusMessage;
+      }
+    } catch (error, stackTrace) {
+      message = response?.statusMessage ?? error.toString();
+    }
+    return message;
+  }
+
 }
 
 class Mobile{
