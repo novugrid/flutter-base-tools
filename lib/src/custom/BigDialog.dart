@@ -153,6 +153,10 @@ class BigDialog extends StatelessWidget {
         case TargetPlatform.android:
         case TargetPlatform.fuchsia:
           label = semanticLabel ?? MaterialLocalizations.of(context)?.dialogLabel;
+          break;
+        case TargetPlatform.macOS:
+          // TODO: Handle this case.
+          break;
       }
     }
 

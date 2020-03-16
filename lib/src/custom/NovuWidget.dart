@@ -3,83 +3,88 @@ import 'package:flutter_base_tools/src/helpers/Config.dart';
 
 typedef TextValidator = Function(String value);
 
-class NovuWidgets
-{
+class NovuWidgets {
 
-  static titleStyle()
-  {
+  static titleStyle() {
     return TextStyle(
-      color: Config.APP_PRIMARY_COLOR,
-      fontSize: 25,
-      fontWeight: FontWeight.w600
+        color: Config.APP_PRIMARY_COLOR,
+        fontSize: 25,
+        fontWeight: FontWeight.w600
     );
   }
 
-  static Widget formTextField(String label, String hint, TextEditingController _controller,
-      TextInputType inputType, String errorMessage, {bool isObscureText = false, Color borderColor, TextValidator textValidator,
-        bool isLastTextField = false, FocusNode focusNode, FocusNode nextFocusNode,
-        BuildContext context, TextStyle labelTextStyle, String prefixText = "", bool hasBorder = true,
-        TextStyle hintStyle, TextStyle inputStyle = const TextStyle(color: Colors.black), EdgeInsets contentPadding = const EdgeInsets.all(5)
-      })
-  {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          label.isEmpty ? SizedBox() :
-          Row(
-            children: <Widget>[
-              Text(label, style: labelTextStyle ?? TextStyle(color: Color(0xFF716D73), fontSize: 15, fontWeight: FontWeight.w500),)
-            ],
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: hintStyle ?? TextStyle(
-                  color: Color(0XFF757575),
-                  fontSize: 13
-              ),
-              errorStyle: TextStyle(color: Colors.red, fontSize: 10),
-              border: !hasBorder ? InputBorder.none : UnderlineInputBorder(
+  static TextStyle formFieldTextStyle({double fontSize = 16}) =>
+      TextStyle(color: Colors.black, fontSize: fontSize, fontFamily: "ARoman");
+
+  static TextStyle formFieldLabelStyle({double fontSize = 14}) =>
+      TextStyle(
+          fontSize: fontSize,
+          fontFamily: "ARoman",
+          color: Colors.black.withOpacity(0.5));
+
+  static Widget formTextField(String label,
+      String hint,
+      TextEditingController _controller,
+      TextInputType inputType,
+      String errorMessage,
+      {bool isObscureText = false,
+        Color borderColor,
+        TextValidator textValidator,
+        bool isLastTextField = false,
+        FocusNode focusNode,
+        FocusNode nextFocusNode,
+        BuildContext context,
+        TextStyle labelTextStyle,
+        int maxLines = 1,
+        InputBorder border,
+        TextStyle inputTextStyle,
+        Widget prefix,
+        bool isEnabled = true}) {
+    return TextFormField(
+      decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: formFieldTextStyle(),
+          errorStyle: TextStyle(color: Colors.red, fontSize: 10),
+          border: border ??
+              UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: borderColor ?? Colors.black26,
-                      width: 1
-                  )
-              ),
-              enabledBorder: !hasBorder ? InputBorder.none : UnderlineInputBorder(
+                      color: borderColor ?? Color(0xffB7B7B7), width: 1)),
+          enabledBorder: border ??
+              UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: borderColor ?? Colors.black26,
-                      width: 1
-                  )
-              ),
-              contentPadding: contentPadding,
-              prefixText: prefixText,
-            ),
-            controller: _controller,
-            maxLines: 1,
-            enabled: true,
-            keyboardType: inputType,
-            obscureText: isObscureText ?? false,
-            textInputAction: isLastTextField ? TextInputAction.done : TextInputAction.next,
-            validator: textValidator ?? (value) {
-              if(value.isEmpty) {
-                return errorMessage;
-              }
-            },
-            focusNode: focusNode,
-            onFieldSubmitted: (term){
-              if(focusNode != null && context != null){
-                isLastTextField ? FocusScope.of(context).consumeKeyboardToken()
-                    : FocusScope.of(context).requestFocus(nextFocusNode);
-              }
-            },
-            style: inputStyle,
-          ),
-        ],
-      ),
+                      color: borderColor ?? Colors.black26, width: 1)),
+          labelText: "$label",
+          labelStyle: labelTextStyle ?? formFieldLabelStyle(),
+          contentPadding: EdgeInsets.zero,
+          prefix: prefix ?? SizedBox()),
+      controller: _controller,
+      maxLines: maxLines,
+      enabled: isEnabled,
+      keyboardType: inputType,
+      obscureText: isObscureText ?? false,
+      textInputAction:
+      isLastTextField ? TextInputAction.done : TextInputAction.next,
+      validator: textValidator ??
+              (value) {
+            if (value.isEmpty) {
+              return errorMessage;
+            }
+          },
+      focusNode: focusNode,
+      onFieldSubmitted: (term) {
+        if (focusNode != null && context != null) {
+          isLastTextField
+              ? FocusScope.of(context).consumeKeyboardToken()
+              : FocusScope.of(context).requestFocus(nextFocusNode);
+        }
+      },
+      style: inputTextStyle ??
+          TextStyle(
+              color: Colors.black, fontSize: 16, fontFamily: "ARoman"),
     );
   }
 
-  static Widget negativeButton( String title, VoidCallback callback,
+  static Widget negativeButton(String title, VoidCallback callback,
       {bool shouldPop = false, Color textColor,
         TextStyle textStyle, Widget trailingWidget,
         EdgeInsets padding
@@ -94,17 +99,18 @@ class NovuWidgets
                 : print('Negative Callback Not Present');
           },
           child: trailingWidget == null ?
-            Text(title, style: textStyle ?? TextStyle(fontSize: 14.0))
-            : Row(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text(title, style: textStyle ?? TextStyle(fontSize: 14.0)),
-                  SizedBox(width: 5,),
-                  trailingWidget
-                ],
-              ),
+          Text(title, style: textStyle ?? TextStyle(fontSize: 14.0))
+              : Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(title, style: textStyle ?? TextStyle(fontSize: 14.0)),
+              SizedBox(width: 5,),
+              trailingWidget
+            ],
+          ),
           textColor: textColor ?? Config.APP_PRIMARY_COLOR,
-          padding: padding ?? EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
+          padding: padding ??
+              EdgeInsets.symmetric(vertical: 5.0, horizontal: 30.0),
           shape: new RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(6.0)),
         ),
@@ -113,8 +119,7 @@ class NovuWidgets
   }
 
   static Widget inputCard(Widget child, {
-    bool validated, IconData icon, bool showValidationIcon = false})
-  {
+    bool validated, IconData icon, bool showValidationIcon = false}) {
     return Card(
       margin: EdgeInsets.only(left: 20, top: 10, right: 20),
       color: Colors.white,
@@ -132,15 +137,16 @@ class NovuWidgets
             SizedBox(width: showValidationIcon ? 5 : 0,),
 
             !showValidationIcon ? SizedBox() :
-            Icon(Icons.done, size: 20, color: validated ? Colors.green : Colors.grey,),
+            Icon(Icons.done, size: 20,
+              color: validated ? Colors.green : Colors.grey,),
           ],
         ),
       ),
     );
   }
 
-  static Widget searchField(TextEditingController controller,{bool hasBorder = false, Color borderColor})
-  {
+  static Widget searchField(TextEditingController controller,
+      {bool hasBorder = false, Color borderColor}) {
     return TextFormField(
       decoration: InputDecoration(
         hintText: "Search",
@@ -167,7 +173,7 @@ class NovuWidgets
       enabled: true,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.search,
-      onFieldSubmitted: (term){
+      onFieldSubmitted: (term) {
 
       },
       style: TextStyle(
@@ -206,12 +212,12 @@ class NovuWidgets
           ),
         ],
       ),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius)),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadius)),
     );
   }
 
-  static appBar(String title, {List<Widget> actions, double elevation = 3})
-  {
+  static appBar(String title, {List<Widget> actions, double elevation = 3}) {
     return AppBar(
       backgroundColor: Colors.white,
       title: Text("$title", style: TextStyle(color: Config.APP_PRIMARY_COLOR),),
@@ -222,11 +228,13 @@ class NovuWidgets
     );
   }
 
-  static Widget pageLoading(BuildContext context)
-  {
+  static Widget pageLoading(BuildContext context) {
     return Container(
       color: Colors.black45,
-      height: MediaQuery.of(context).size.height,
+      height: MediaQuery
+          .of(context)
+          .size
+          .height,
       child: Center(child: CircularProgressIndicator()),
     );
   }
@@ -268,31 +276,33 @@ class NovuWidgets
       style: TextStyle(color: Colors.black, fontSize: 16, fontFamily: "ARoman"),
       // ignore: missing_return
       validator: textValidator ?? (value) {
-        if(value.isEmpty) {
+        if (value.isEmpty) {
           return errorMessage ?? "Fill the form";
         }
       },
     );
   }
 
-  static Widget progressAwareButton({@required ValueNotifier<bool> notifier, @required Widget child}) {
+  static Widget progressAwareButton(
+      {@required ValueNotifier<bool> notifier, @required Widget child}) {
     return ValueListenableBuilder(
-      valueListenable: notifier,
-      builder: (context, value, anotherChild){
-        return value ? Center(child: CircularProgressIndicator(),) : child;
-      }
+        valueListenable: notifier,
+        builder: (context, value, anotherChild) {
+          return value ? Center(child: CircularProgressIndicator(),) : child;
+        }
     );
   }
 
   static Widget divider({
     Color color = Colors.black26,
     double height = 0.5
-  }) => Container(
-    height: height,
-    color: color,
-  );
+  }) =>
+      Container(
+        height: height,
+        color: color,
+      );
 
-  static Widget neutralButton( String title, VoidCallback callback,
+  static Widget neutralButton(String title, VoidCallback callback,
       {Color textColor, TextStyle textStyle, Widget trailingWidget}) {
     return FlatButton(
       onPressed: () {
@@ -307,7 +317,7 @@ class NovuWidgets
             Expanded(child: Text(title, style: textStyle ?? TextStyle(
                 fontSize: 14.0,
                 color: Color(0xff2B3349),
-              fontWeight: FontWeight.bold
+                fontWeight: FontWeight.bold
             )
             )),
             trailingWidget ?? SizedBox(),
